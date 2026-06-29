@@ -6,3 +6,8 @@ app/config.json
 # Paketlenmiş eklenti çıktıları (build artifact)
 *.xpi
 *.zip
+web-ext-artifacts/
+
+# AMO imza anahtarları — ASLA commit'leme
+.amo-credentials
+*.amo.env
