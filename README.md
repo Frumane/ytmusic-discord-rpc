@@ -113,13 +113,34 @@ Floorp/LibreWolf gibi ESR tabanlı tarayıcılar imzasız eklentiye izin verebil
 > Not: Standart Firefox'un **release** sürümü imza zorunluluğunu kaldırmaya izin vermez;
 > orada yalnızca Yöntem A çalışır. Floorp'ta Yöntem B genelde çalışır.
 
-## Otomatik başlatma (isteğe bağlı)
-`app`'i bilgisayar açılışında çalıştırmak için Windows'ta **Görev Zamanlayıcı** veya
-`pm2` kullanabilirsin:
+## Otomatik başlatma (Windows) — kalıcı ve gizli çalıştır
+`app` her oturum açılışında, **pencere açmadan (gizli)** başlasın ve çökerse kendini
+yeniden başlatsın istiyorsan, hazır scriptler var. **Yönetici (admin) gerekmez.**
+
+Kurmak için (PowerShell'de):
+```powershell
+cd app
+powershell -ExecutionPolicy Bypass -File install-autostart.ps1
+```
+Bu script:
+- `run-hidden.vbs`'i Windows **Başlangıç** klasörüne kısayol olarak ekler (oturum açılışında çalışır),
+- node uygulamasını **gizli** olarak başlatır (konsol penceresi görünmez),
+- uygulama çökerse 5 sn içinde **otomatik yeniden başlatır**.
+
+Kalıcı olarak kapatmak / kaldırmak için:
+```powershell
+powershell -ExecutionPolicy Bypass -File uninstall-autostart.ps1
+```
+
+> Yine de **Discord masaüstü** uygulamasının açık olması gerekir; durum ancak Discord
+> çalışırken görünür.
+
+### Alternatif: pm2 (çok platformlu)
 ```bash
-npm i -g pm2
+npm i -g pm2 pm2-windows-startup
 pm2 start index.js --name ytmusic-rpc
 pm2 save
+pm2-startup install
 ```
 
 ---
