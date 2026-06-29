@@ -1,0 +1,14 @@
+{
+  "name": "ytmusic-discord-rpc",
+  "version": "1.0.0",
+  "description": "YouTube Music çalma durumunu Discord Rich Presence olarak gösteren yerel uygulama.",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@xhayper/discord-rpc": "^1.2.1"
+  }
+}

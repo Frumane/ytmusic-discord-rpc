@@ -1,0 +1,8 @@
+{
+  "_not": "config.json İSTEĞE BAĞLIDIR. Gömülü varsayılan ID ile zaten çalışır. Sadece kendi Discord uygulamanı kullanmak istersen bu dosyayı config.json olarak kopyala ve clientId'yi doldur.",
+  "clientId": "BURAYA_KENDI_DISCORD_APPLICATION_ID",
+  "port": 7700,
+  "activityType": "listening",
+  "showButton": true,
+  "pauseClears": false
+}

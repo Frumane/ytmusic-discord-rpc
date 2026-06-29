@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Music → Discord Rich Presence",
+  "version": "1.0.0",
+  "description": "YouTube Music'te çalan şarkıyı Discord profilinde detaylı gösterir.",
+  "host_permissions": [
+    "https://music.youtube.com/*",
+    "http://127.0.0.1:7700/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ytmusic-discord-rpc@local",
+      "strict_min_version": "115.0"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://music.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
