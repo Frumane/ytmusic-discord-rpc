@@ -14,7 +14,7 @@ YouTube Music'te çalan şarkıyı Discord profilinde **detaylı** gösterir:
 ## Nasıl çalışır?
 
 ```
-music.youtube.com  ──(tarayıcı eklentisi)──>  ws://127.0.0.1:7700  ──(Node app)──>  Discord (IPC)
+music.youtube.com  ──(tarayıcı eklentisi)──>  http://127.0.0.1:7700  ──(Node app)──>  Discord (IPC)
 ```
 
 YouTube Music'in resmi Discord entegrasyonu yok ve tarayıcı eklentileri Discord IPC'ye
@@ -82,12 +82,13 @@ Birkaç saniye içinde Discord profilinde durum görünür. 🎉
 | Alan | Açıklama | Varsayılan |
 |------|----------|------------|
 | `clientId` | Discord Application ID (boş bırakılırsa gömülü varsayılan kullanılır) | gömülü |
-| `port` | Eklentinin bağlandığı yerel WebSocket portu | `7700` |
+| `port` | Eklentinin bağlandığı yerel HTTP portu | `7700` |
 | `activityType` | `listening` ("…dinliyor") veya `playing` ("…oynuyor") | `listening` |
 | `showButton` | "YouTube Music'te Dinle" butonu | `true` |
 | `pauseClears` | Şarkı durunca durumu temizle (`true`) ya da "Duraklatıldı" göster (`false`) | `false` |
 
-> Portu değiştirirsen `extension/background.js` içindeki `PORT` değerini de aynı yap.
+> Portu değiştirirsen `extension/background.js` içindeki `PORT` ve `extension/manifest.json`
+> içindeki `host_permissions` portunu (`http://127.0.0.1:7700/*`) da aynı yap.
 
 ---
 
