@@ -105,10 +105,20 @@ Floorp Firefox tabanlı olduğu için aynen çalışır.
 
 ### Yöntem B — Kalıcı yükleme (Floorp'ta imzasız XPI)
 Floorp/LibreWolf gibi ESR tabanlı tarayıcılar imzasız eklentiye izin verebilir:
-1. `about:config` → `xpinstall.signatures.required` değerini **false** yap.
-2. `extension/` klasörünün içindekileri (manifest.json kökte olacak şekilde) bir **.zip**'e koy,
-   uzantısını `.xpi` yap.
-3. `about:addons` → dişli ⚙️ → **Dosyadan Eklenti Yükle** → `.xpi`'yi seç.
+1. `about:config` → `xpinstall.signatures.required` değerini **false** yap, Floorp'u yeniden başlat.
+2. `.xpi` dosyasını oluştur:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File extension/build-xpi.ps1
+   ```
+   Bu, proje kökünde `ytmusic-discord-rpc.xpi` üretir.
+3. `about:addons` → dişli ⚙️ → **Dosyadan Eklenti Yükle** → bu `.xpi`'yi seç.
+
+> ⚠️ **`.xpi`'yi `build-xpi.ps1` ile oluştur**, PowerShell'in `Compress-Archive`'ı veya elle
+> zip'lemekten kaçın — Firefox onları bazen "bozuk" sayıp reddeder ve kurulu eklentiyi
+> de silebilir. Script .NET ZipFile API'siyle geçerli, manifest'i kökte olan bir arşiv üretir.
+>
+> Kodu güncelleyince: `manifest.json`'daki `version`'ı artır → `build-xpi.ps1`'i tekrar çalıştır
+> → yeni `.xpi`'yi kur (eskisinin üzerine güncellenir).
 
 > Not: Standart Firefox'un **release** sürümü imza zorunluluğunu kaldırmaya izin vermez;
 > orada yalnızca Yöntem A çalışır. Floorp'ta Yöntem B genelde çalışır.
