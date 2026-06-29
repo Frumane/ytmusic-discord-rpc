@@ -2,3 +2,7 @@ node_modules/
 app/config.json
 *.log
 .DS_Store
+
+# Paketlenmiş eklenti çıktıları (build artifact)
+*.xpi
+*.zip
